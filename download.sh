@@ -4,8 +4,8 @@
 /bin/ls -la
 printenv
 
-echo user=rohinijoshi> $HOME/.wgetrc
-echo password=Astroniskew1 >> $HOME/.wgetrc
+echo user=username> $HOME/.wgetrc
+echo password=password>> $HOME/.wgetrc
 for value in {0..2}
 do
 	num=$((10#$1*3))
@@ -21,7 +21,7 @@ do
 	filename="${filename%?}"
 	echo "$filename"
 	# Change where in the file catalog you want the files to be uploaded
-	lfn="/skatelescope.eu/user/r/rohini.joshi/GOODSN581359/L581367/"
+	lfn="/VO/user/username/PathToStoreData"
 	# Does the file exist on the catalog? If it does, stop. There is probably a better way to do this...
 	dirac-dms-lfn-metadata $lfn$filename | grep "No such file" &> /dev/null
 	if [ $? -ne 0 ]; then
