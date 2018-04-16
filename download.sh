@@ -4,14 +4,14 @@
 /bin/ls -la
 printenv
 
-echo user=username> $HOME/.wgetrc
-echo password=password>> $HOME/.wgetrc
+echo user=$3> $HOME/.wgetrc
+echo password=$4>> $HOME/.wgetrc
 for value in {0..2}
 do
 	num=$((10#$1*3))
 	index=$(($num + $value))
 	# This script will have each parametric job extract a unique line (file) and print it into singleFile.txt 
-	./stripFilename $index 
+	./stripFilename $index $6 
 	# Do this magic to extract a concise file name
 	fullfile=$(cat singleFile.txt)
 	echo "$fullfile"
@@ -21,7 +21,7 @@ do
 	filename="${filename%?}"
 	echo "$filename"
 	# Change where in the file catalog you want the files to be uploaded
-	lfn="/VO/user/username/PathToStoreData"
+	lfn=$5
 	# Does the file exist on the catalog? If it does, stop. There is probably a better way to do this...
 	dirac-dms-lfn-metadata $lfn$filename | grep "No such file" &> /dev/null
 	if [ $? -ne 0 ]; then

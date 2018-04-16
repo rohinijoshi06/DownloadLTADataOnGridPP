@@ -3,7 +3,7 @@
 import sys
 
 fileNumber = sys.argv[1]
-with open("htmlL581367.txt") as f:
+with open(sys.argv[2]) as f:
  s = f.readlines()
 filename = s[int(fileNumber)]
 with open("singleFile.txt", "w") as singleFile:

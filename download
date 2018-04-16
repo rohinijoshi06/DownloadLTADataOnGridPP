@@ -43,21 +43,21 @@ jdl += 'Executable = "download.sh";\n'
 # %s is the parameter taken from the list given in Parameters = { ... }
 # %j is the unique DIRAC Job ID number
 # something is just a value to show you can add other things too
-jdl += 'Arguments = "%n %j something";\n'
+jdl += 'Arguments = "%n %j ' + sys.argv[2] + ' ' + sys.argv[3] + ' ' + sys.argv[4] + ' ' + sys.argv[1] + '";\n'
 
 # Send the script you want to run (in this directory where you run man-job-submit
 # or give the full path to it)
-jdl += 'InputSandbox = { "download.sh", "stripFilename","htmlL581367.txt" };\n'
+jdl += 'InputSandbox = { "download.sh", "stripFilename","' + sys.argv[1] + '" };\n'
 
 # Something wrong with a specific site? Add it here
-jdl += 'BannedSites = {"VAC.UKI-SOUTHGRID-CAM-HEP.uk"};\n'
+#jdl += 'BannedSites = {};\n'
 # Tell DIRAC where to get your big input data files from
 # %s is the parameter taken from the list given in Parameters = { ... }
-#jdl += 'InputData = "html.txt";\n'
+#jdl += 'InputData = "";\n'
 
 # Direct stdout and stderr to files
 jdl += 'StdOutput = "StdOut";\n';
-jdl += 'StdOutput = "StdErr";\n';
+jdl += 'StdError = "StdErr";\n';
 
 # Small files can be put in the output sandbox
 jdl += 'OutputSandbox = {"StdOut", "StdErr", "%j.wc.log"};\n'
